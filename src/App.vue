@@ -13,6 +13,9 @@
 
     <!-- add book form -->
     <book-form @add="addBook" />
+
+    <!-- books summary -->
+    <books-summary :books="books" />
   </div>
 </template>
 
@@ -20,6 +23,7 @@
 import BooksList from './components/BooksList'
 import BooksLengthMsg from './components/BooksLengthMsg'
 import BookForm from './components/BookForm'
+import BooksSummary from './components/BooksSummary'
 export default {
   name: 'App',
   data: () => ({
@@ -45,7 +49,8 @@ export default {
   components: {
     BooksList,
     BooksLengthMsg,
-    BookForm
+    BookForm,
+    BooksSummary
   }
 }
 </script>
