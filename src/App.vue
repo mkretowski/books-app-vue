@@ -6,12 +6,7 @@
     </header>
 
     <!-- books list -->
-    <ul>
-      <li :key="index" v-for="(book, index) in books">
-        {{ book.title }}, {{ book.price }}
-        <button @click="removeBook(index)">Remove</button>
-      </li>
-    </ul>
+    <books-list :removeBook="removeBook" :books="books" />
 
     <!-- no books message -->
     <p v-show="!books.length">No books...</p>
@@ -42,6 +37,7 @@
 </template>
 
 <script>
+import BooksList from './components/BooksList'
 export default {
   name: 'App',
   data: () => ({
@@ -69,6 +65,9 @@ export default {
       this.form.title = ''
       this.form.price = 0
     }
+  },
+  components: {
+    BooksList
   }
 }
 </script>
