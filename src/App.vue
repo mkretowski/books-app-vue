@@ -12,14 +12,7 @@
     <p v-show="!books.length">No books...</p>
 
     <!-- no books message -->
-    <div>
-      <p v-if="books.length > 5">{{ books.length }} books</p>
-      <p v-else-if="books.length > 1 && books.length <= 5">
-        Not too many of them…
-      </p>
-      <p v-else-if="books.length === 1">One single book!</p>
-      <p v-else>Go get some books!</p>
-    </div>
+    <books-length-msg :books="books" />
 
     <!-- add book form -->
     <form @submit.prevent="handleSubmit">
@@ -38,6 +31,7 @@
 
 <script>
 import BooksList from './components/BooksList'
+import BooksLengthMsg from './components/BooksLengthMsg'
 export default {
   name: 'App',
   data: () => ({
@@ -67,7 +61,8 @@ export default {
     }
   },
   components: {
-    BooksList
+    BooksList,
+    BooksLengthMsg
   }
 }
 </script>
