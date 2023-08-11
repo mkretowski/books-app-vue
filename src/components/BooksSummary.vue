@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>Books amount: {{ books.length }}</p>
-    <p>Books price: {{ booksPrice }}</p>
+    <p>Books price: {{ booksPrice.toFixed(2) }}</p>
   </div>
 </template>
 <script>
@@ -15,7 +15,10 @@ export default {
   },
   computed: {
     booksPrice() {
-      return this.books.reduce((total, book) => total + parseInt(book.price), 0)
+      return this.books.reduce(
+        (total, book) => total + parseFloat(book.price),
+        0
+      )
     }
   }
 }

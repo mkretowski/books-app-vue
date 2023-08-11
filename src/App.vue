@@ -27,23 +27,36 @@ import BooksSummary from './components/BooksSummary'
 export default {
   name: 'App',
   data: () => ({
-    books: [
-      {
-        title: 'The Catcher in the Rye',
-        price: 20
-      },
-      {
-        title: 'Of Mice and Men',
-        price: 18
-      }
-    ]
+    books: []
   }),
+  mounted() {
+    this.fetchBookData('9781491954249')
+    this.fetchBookData('9781491985571')
+    this.fetchBookData('9781617294136')
+  },
   methods: {
     removeBook(index) {
       this.books.splice(index, 1)
     },
     addBook(book) {
       this.books.push({ ...book })
+    },
+    async fetchBookData(isbn) {
+      try {
+        const response = await fetch(
+          `https://api.itbook.store/1.0/books/${isbn}`
+        )
+        const data = await response.json()
+        if (!data.title || !data.price) {
+          throw new Error('Invalid book data')
+        }
+        this.books.push({
+          title: data.title,
+          price: parseFloat(data.price.replace('$', ''))
+        })
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
   components: {
