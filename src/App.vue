@@ -29,7 +29,7 @@ export default {
   data: () => ({
     books: []
   }),
-  mounted() {
+  created() {
     this.fetchBookData('9781491954249')
     this.fetchBookData('9781491985571')
     this.fetchBookData('9781617294136')
